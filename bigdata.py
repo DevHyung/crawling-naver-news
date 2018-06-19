@@ -37,13 +37,11 @@ for url in url_list_p:
     bs4_p = BeautifulSoup(html_p.text,'lxml')
     content_p = bs4_p.find('div',id='newsEndContents')
     output_p.write(content_p.get_text().strip())
-    #print(content_p.get_text().strip())#TEST
     time.sleep(NEWS_PARSING_DELAY)
 output_p.close()
 ### 최신순 파싱부분
 url_list_r = []
 result_r = soup_r.find_all("script")
-#result_p = soup_p.select("#_newsList .text a")
 script_r = result_r[-8].get_text().split('newsListModel:')[1][:-4]
 json_r = json.loads(script_r)
 print('[INFO] 파싱결과 최신순')
